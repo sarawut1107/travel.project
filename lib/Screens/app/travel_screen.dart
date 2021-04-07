@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/app/travel_view.dart';
 import 'package:http/http.dart' as Http;
 import '../Login/components/background.dart';
 
@@ -40,12 +41,18 @@ class _TravelPageState extends State<TravelPage> {
             if (snapshot.hasData) {
               return ListView.builder(
                 itemCount: templeList.length,
-                itemBuilder: (context, index) {
+                itemBuilder: (BuildContext context, index) {
                   return Card(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                // ignore: missing_required_param
+                                builder: (context) => TravelViewPage()));
+                      },
                       child: ListTile(
-                        title: Text("${templeList[index].name}"),
+                        title: Text("${jsonData[index]['name']}"),
                       ),
                     ),
                   );
