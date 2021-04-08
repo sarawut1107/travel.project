@@ -22,7 +22,7 @@ class _TravelPageState extends State<TravelPage> {
     jsonData = json.decode(utf8.decode(response.bodyBytes));
     for (var item in jsonData) {
       TempleData templeData = TempleData(item['order'], item['name'],
-          item['maestro'], item['latitude'], item['longitude']);
+          item['maestro'], item['detail'], item['latitude'], item['longitude']);
       templeList.add(templeData);
     }
     return 'ok';
@@ -50,7 +50,9 @@ class _TravelPageState extends State<TravelPage> {
                             MaterialPageRoute(
                                 // ignore: missing_required_param
                                 builder: (context) => TravelViewPage(
-                                    name: templeList[index].name)));
+                                    name: templeList[index].name,
+                                    maestro: templeList[index].maestro,
+                                    detail: templeList[index].detail)));
                       },
                       child: ListTile(
                         title: Text("${jsonData[index]['name']}"),
@@ -80,8 +82,9 @@ class TempleData {
   int order;
   String name;
   String maestro;
+  String detail;
   double latitude;
   double longitude;
-  TempleData(
-      this.order, this.name, this.maestro, this.latitude, this.longitude);
+  TempleData(this.order, this.name, this.maestro, this.detail, this.latitude,
+      this.longitude);
 }
