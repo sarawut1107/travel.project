@@ -23,9 +23,16 @@ class _TravelViewPageState extends State<TravelViewPage> {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Travel Data'),
+      appBar: AppBar(
+        title: Text('Travel Data'),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: <Widget>[Text("${widget.name}")],
+          ),
         ),
-        body: FutureBuilder());
+      ),
+    );
   }
 }

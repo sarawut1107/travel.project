@@ -49,7 +49,8 @@ class _TravelPageState extends State<TravelPage> {
                             context,
                             MaterialPageRoute(
                                 // ignore: missing_required_param
-                                builder: (context) => TravelViewPage()));
+                                builder: (context) => TravelViewPage(
+                                    name: templeList[index].name)));
                       },
                       child: ListTile(
                         title: Text("${jsonData[index]['name']}"),
