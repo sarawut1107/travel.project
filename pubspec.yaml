@@ -26,6 +26,8 @@ dependencies:
   flutter_svg: ^0.19.1
   http: ^0.12.2
   webview_flutter: ^1.0.7
+  geolocator: ^6.1.14
+  google_maps_flutter: ^1.1.1
 
   
 dev_dependencies:

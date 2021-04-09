@@ -17,12 +17,18 @@ class _TravelPageState extends State<TravelPage> {
   // ignore: non_constant_identifier_names
   Future<String> _getTravelAPI() async {
     var response =
-        await Http.get('http://sarawut1107.github.io/templel/templel.json');
+        await Http.get('https://sarawut1107.github.io/templel/templel.json');
 
     jsonData = json.decode(utf8.decode(response.bodyBytes));
     for (var item in jsonData) {
-      TempleData templeData = TempleData(item['order'], item['name'],
-          item['maestro'], item['detail'], item['latitude'], item['longitude']);
+      TempleData templeData = TempleData(
+          item['order'],
+          item['name'],
+          item['maestro'],
+          item['detail'],
+          item['latitude'],
+          item['longitude'],
+          item['img']);
       templeList.add(templeData);
     }
     return 'ok';
@@ -52,7 +58,8 @@ class _TravelPageState extends State<TravelPage> {
                                 builder: (context) => TravelViewPage(
                                     name: templeList[index].name,
                                     maestro: templeList[index].maestro,
-                                    detail: templeList[index].detail)));
+                                    detail: templeList[index].detail,
+                                    img: templeList[index].img)));
                       },
                       child: ListTile(
                         title: Text("${jsonData[index]['name']}"),
@@ -85,6 +92,15 @@ class TempleData {
   String detail;
   double latitude;
   double longitude;
-  TempleData(this.order, this.name, this.maestro, this.detail, this.latitude,
-      this.longitude);
+  String img;
+
+  TempleData(
+    this.order,
+    this.name,
+    this.maestro,
+    this.detail,
+    this.latitude,
+    this.longitude,
+    this.img,
+  );
 }
