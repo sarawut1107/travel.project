@@ -26,8 +26,6 @@ class TravelViewPage extends StatefulWidget {
 }
 
 class _TravelViewPageState extends State<TravelViewPage> {
-  var templel;
-
   @override
   Widget build(BuildContext context) {
     @override
