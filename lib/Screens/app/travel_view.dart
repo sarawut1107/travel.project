@@ -86,14 +86,6 @@ class _TravelViewPageState extends State<TravelViewPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MapsPage()));
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.near_me),
-      ),
     );
   }
 }

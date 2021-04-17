@@ -4,15 +4,60 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/app/travel_view.dart';
 import 'package:http/http.dart' as Http;
 import '../Login/components/background.dart';
+// ignore: unused_import
+import 'package:flutter_search_bar/flutter_search_bar.dart';
 
 class TravelPage extends StatefulWidget {
+  @override
+  // ignore: override_on_non_overriding_member
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Search Bar Demo',
+      theme: new ThemeData(primarySwatch: Colors.blue),
+    );
+  }
+
   @override
   _TravelPageState createState() => _TravelPageState();
 }
 
 class _TravelPageState extends State<TravelPage> {
   var jsonData;
+  SearchBar searchBar;
+  String searchKey = "";
   List<TempleData> templeList = [];
+
+  // ignore: unused_field
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  AppBar buildAppBar(BuildContext context) {
+    return new AppBar(
+      title: new Text('Travel Sisaket'),
+      actions: [searchBar.getSearchAction(context)],
+    );
+  }
+
+  void onSubmitted(String value) {
+    setState(() {
+      searchKey = value;
+      _scaffoldKey.currentState.showSnackBar(
+          new SnackBar(content: new Text('You search for $value!')));
+    });
+  }
+
+  _TravelPageState() {
+    searchBar = new SearchBar(
+        inBar: false,
+        buildDefaultAppBar: buildAppBar,
+        setState: setState,
+        onSubmitted: onSubmitted,
+        onCleared: () {
+          print("cleared");
+        },
+        onClosed: () {
+          print("Closed");
+        });
+  }
 
   // ignore: non_constant_identifier_names
   Future<String> _getTravelAPI() async {
@@ -31,15 +76,15 @@ class _TravelPageState extends State<TravelPage> {
           item['img']);
       templeList.add(templeData);
     }
-    return 'ok';
+
+    return 'jsonData';
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Travel Sisaket'),
-      ),
+    return new Scaffold(
+      appBar: searchBar.build(context),
+      key: _scaffoldKey,
       body: Background(
         child: FutureBuilder(
           future: _getTravelAPI(),
@@ -103,4 +148,6 @@ class TempleData {
     this.longitude,
     this.img,
   );
+
+  startsWith(String searchKey) {}
 }

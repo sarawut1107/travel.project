@@ -28,6 +28,7 @@ dependencies:
   webview_flutter: ^1.0.7
   geolocator: ^6.1.14
   google_maps_flutter: ^1.1.1
+  flutter_search_bar: ^2.1.0
 
   
 dev_dependencies:
