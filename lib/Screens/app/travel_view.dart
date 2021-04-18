@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Login/components/background.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:flutter_auth/Screens/app/travel_screen.dart';
 import 'map.dart';
 
 class TravelViewPage extends StatefulWidget {
