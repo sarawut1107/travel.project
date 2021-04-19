@@ -39,7 +39,11 @@ class _MapPageState extends State<MapPage> {
       markerId: MarkerId('Hello'),
       position: position,
       infoWindow: InfoWindow(
+<<<<<<< HEAD
         title: "วัดสว่าง..",
+=======
+        title: "ชื่อวัด.....",
+>>>>>>> b1fa88420c45b037ec075c53c88bd3e2518753c4
         // snippet: history.date,
       ),
     );
