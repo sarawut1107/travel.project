@@ -9,6 +9,7 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -25,10 +26,14 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "LOGIN",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            SizedBox(
+              height: 20,
             ),
+            Text("LOGIN",
+                style: GoogleFonts.sourceCodePro(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                )),
             Card(
               child: Image.asset("assets/images/baung.jpg"),
               semanticContainer: true,

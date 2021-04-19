@@ -29,6 +29,7 @@ dependencies:
   geolocator: ^6.1.14
   google_maps_flutter: ^1.1.1
   flutter_search_bar: ^2.1.0
+  google_fonts: ^0.4.3
 
   
 dev_dependencies:

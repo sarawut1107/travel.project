@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'map.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TravelViewPage extends StatefulWidget {
   final String name;
@@ -22,6 +23,19 @@ class TravelViewPage extends StatefulWidget {
 }
 
 class _TravelViewPageState extends State<TravelViewPage> {
+  TextStyle bulletStyle = GoogleFonts.baiJamjuree(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
+
+  TextStyle contentStyle = GoogleFonts.baiJamjuree(
+    fontSize: 22,
+  );
+
+  TextStyle kobfont = GoogleFonts.baiJamjuree(
+    fontSize: 20,
+  );
+
   @override
   Widget build(BuildContext context) {
     @override
@@ -35,7 +49,10 @@ class _TravelViewPageState extends State<TravelViewPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Travel Data'),
+        title: Text(
+          'รายละเอียดวัด',
+          style: GoogleFonts.baiJamjuree(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -47,9 +64,10 @@ class _TravelViewPageState extends State<TravelViewPage> {
               Container(
                 margin: EdgeInsets.all(15),
                 child: Align(
-                  child: Text("${widget.name}",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  child: Text(
+                    "${widget.name}",
+                    style: bulletStyle,
+                  ),
                 ),
               ),
               Card(
@@ -65,7 +83,7 @@ class _TravelViewPageState extends State<TravelViewPage> {
                 child: Align(
                   child: Text(
                     "${widget.maestro}",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: contentStyle,
                   ),
                 ),
               ),
@@ -75,12 +93,7 @@ class _TravelViewPageState extends State<TravelViewPage> {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 15),
                 child: Align(
-                  child: Text(
-                    "${widget.detail}",
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
+                  child: Text("${widget.detail}", style: kobfont),
                 ),
               ),
             ],

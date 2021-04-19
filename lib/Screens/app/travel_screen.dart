@@ -5,6 +5,7 @@ import 'package:flutter_auth/Screens/app/travel_view.dart';
 import 'package:http/http.dart' as Http;
 import '../Login/components/background.dart';
 import 'package:flutter_search_bar/flutter_search_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TravelPage extends StatefulWidget {
   @override
@@ -36,7 +37,10 @@ class _TravelPageState extends State<TravelPage> {
 
   AppBar buildAppBar(BuildContext context) {
     return new AppBar(
-      title: new Text('Travel Sisaket'),
+      title: new Text(
+        'รายชื่อวัดในจังหวัดศรีสะเกษ',
+        style: GoogleFonts.baiJamjuree(),
+      ),
       actions: [searchBar.getSearchAction(context)],
     );
   }
@@ -98,6 +102,10 @@ class _TravelPageState extends State<TravelPage> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    TextStyle bulletStyle = GoogleFonts.baiJamjuree(
+      fontSize: 20,
+    );
     return new Scaffold(
       appBar: searchBar.build(context),
       key: _scaffoldKey,
@@ -125,7 +133,7 @@ class _TravelPageState extends State<TravelPage> {
                       },
                       child: ListTile(
                         title: Text("${templeListShow[index].name}",
-                            style: TextStyle(fontSize: 18)),
+                            style: bulletStyle),
                         trailing: Icon(Icons.arrow_right),
                       ),
                     ),

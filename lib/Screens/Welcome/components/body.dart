@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/components/background.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class Body extends StatelessWidget {
+  
+  TextStyle look = GoogleFonts.sourceCodePro(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+  );
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -16,12 +24,27 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "WELCOME TO TRAVEL TEMPLEL SISAKET",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            Container(
+              child: Text(
+                "WELCOME ",
+                style: look,
               ),
+            ),
+            Container(
+              margin: EdgeInsets.all(15),
+              child: Text(
+                "TO ",
+                style: look,
+              ),
+            ),
+            Container(
+              child: Text(
+                "TRAVEL TEMPLEL SISAKET ",
+                style: look,
+              ),
+            ),
+            SizedBox(
+              height: 15,
             ),
             Card(
               child: Image.asset("assets/images/baung.jpg"),

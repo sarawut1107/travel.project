@@ -8,6 +8,7 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -18,10 +19,14 @@ class Body extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "SIGNUP",
-              style: TextStyle(fontWeight: FontWeight.bold),
+            SizedBox(
+              height: 20,
             ),
+            Text("SIGNUP",
+                style: GoogleFonts.sourceCodePro(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                )),
             SizedBox(height: size.height * 0.03),
             Card(
               child: Image.asset("assets/images/baung.jpg"),
