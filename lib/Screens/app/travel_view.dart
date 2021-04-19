@@ -41,6 +41,9 @@ class _TravelViewPageState extends State<TravelViewPage> {
         child: Center(
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 margin: EdgeInsets.all(15),
                 child: Align(
@@ -54,7 +57,7 @@ class _TravelViewPageState extends State<TravelViewPage> {
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
+                    borderRadius: BorderRadius.circular(20.0)),
                 margin: EdgeInsets.all(15),
               ),
               Container(
@@ -62,7 +65,7 @@ class _TravelViewPageState extends State<TravelViewPage> {
                 child: Align(
                   child: Text(
                     "${widget.maestro}",
-                    style: TextStyle(fontSize: 20, color: Colors.grey[800]),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -74,7 +77,9 @@ class _TravelViewPageState extends State<TravelViewPage> {
                 child: Align(
                   child: Text(
                     "${widget.detail}",
-                    style: TextStyle(fontSize: 15, color: Colors.grey[900]),
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),

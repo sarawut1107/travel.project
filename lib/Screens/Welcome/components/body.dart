@@ -17,8 +17,11 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "WELCOME TO TEMPLEL SISAKET",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "WELCOME TO TRAVEL TEMPLEL SISAKET",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Card(
               child: Image.asset("assets/images/baung.jpg"),

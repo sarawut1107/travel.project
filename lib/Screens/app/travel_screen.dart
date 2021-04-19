@@ -124,7 +124,8 @@ class _TravelPageState extends State<TravelPage> {
                                     img: templeListShow[index].img)));
                       },
                       child: ListTile(
-                        title: Text("${templeListShow[index].name}"),
+                        title: Text("${templeListShow[index].name}",
+                            style: TextStyle(fontSize: 18)),
                         trailing: Icon(Icons.arrow_right),
                       ),
                     ),
