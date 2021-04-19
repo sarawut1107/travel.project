@@ -11,6 +11,12 @@ class _MapPageState extends State<MapPage> {
   Position userLocation;
   GoogleMapController mapController;
 
+  // ! ให้นำเอาพิกัด latitude & longitude มาใส่ตรงนี้
+  LatLng position = LatLng(15.191689, 104.2772274);
+
+  //Set google maps marker;
+  Map<String, Marker> _markers = {};
+
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
@@ -27,6 +33,17 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    // ! Set Google Maps Marker
+    final marker = new Marker(
+      markerId: MarkerId('Hello'),
+      position: position,
+      infoWindow: InfoWindow(
+        title: "ชื่อวัด.....",
+        // snippet: history.date,
+      ),
+    );
+    _markers["0"] = marker;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Map'),
@@ -39,8 +56,8 @@ class _MapPageState extends State<MapPage> {
               mapType: MapType.normal,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
-              initialCameraPosition: CameraPosition(
-                  target: LatLng(15.191689, 104.2772274), zoom: 15),
+              initialCameraPosition: CameraPosition(target: position, zoom: 15),
+              markers: _markers.values.toSet(),
             );
           } else {
             return Center(
@@ -52,22 +69,23 @@ class _MapPageState extends State<MapPage> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          mapController.animateCamera(CameraUpdate.newLatLngZoom(
-              LatLng(userLocation.latitude, userLocation.longitude), 18));
-          showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  content: Text(
-                      'Your Location has been send !\n lat: ${userLocation.latitude}  long: ${userLocation.longitude} '),
-                );
-              });
-        },
-        label: Text("send Location"),
-        icon: Icon(Icons.near_me),
-      ),
+      // ! เอาปุ่มออก
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () {
+      //     mapController.animateCamera(CameraUpdate.newLatLngZoom(
+      //         LatLng(userLocation.latitude, userLocation.longitude), 18));
+      //     showDialog(
+      //         context: context,
+      //         builder: (context) {
+      //           return AlertDialog(
+      //             content: Text(
+      //                 'Your Location has been send !\n lat: ${userLocation.latitude}  long: ${userLocation.longitude} '),
+      //           );
+      //         });
+      //   },
+      //   label: Text("send Location"),
+      //   icon: Icon(Icons.near_me),
+      // ),
     );
   }
 }
