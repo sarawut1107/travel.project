@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/app/travel_view.dart';
 import 'package:http/http.dart' as Http;
 import '../Login/components/background.dart';
-// ignore: unused_import
 import 'package:flutter_search_bar/flutter_search_bar.dart';
 
 class TravelPage extends StatefulWidget {
@@ -25,7 +24,12 @@ class _TravelPageState extends State<TravelPage> {
   var jsonData;
   SearchBar searchBar;
   String searchKey = "";
+
+  // ! List for store temple data from JSON
   List<TempleData> templeList = [];
+
+  // ! Create new list for show
+  List<TempleData> templeListShow = [];
 
   // ignore: unused_field
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -65,6 +69,8 @@ class _TravelPageState extends State<TravelPage> {
         await Http.get('https://sarawut1107.github.io/templel/templel.json');
 
     jsonData = json.decode(utf8.decode(response.bodyBytes));
+    // ! if refresh screen
+    templeList.clear();
     for (var item in jsonData) {
       TempleData templeData = TempleData(
           item['order'],
@@ -75,6 +81,16 @@ class _TravelPageState extends State<TravelPage> {
           item['longitude'],
           item['img']);
       templeList.add(templeData);
+    }
+
+    // ! for filter temple when have keyword.
+    if (searchKey == "") {
+      templeListShow = templeList;
+    } else {
+      print(searchKey);
+      templeListShow = templeList
+          .where((element) => element.name.startsWith(searchKey))
+          .toList();
     }
 
     return 'jsonData';
@@ -91,23 +107,25 @@ class _TravelPageState extends State<TravelPage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
-                itemCount: templeList.length,
+                itemCount: templeListShow.length,
                 itemBuilder: (BuildContext context, index) {
                   return Card(
                     child: InkWell(
                       onTap: () {
+                        // ! Use templeListShow to display temple data
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 // ignore: missing_required_param
                                 builder: (context) => TravelViewPage(
-                                    name: templeList[index].name,
-                                    maestro: templeList[index].maestro,
-                                    detail: templeList[index].detail,
-                                    img: templeList[index].img)));
+                                    name: templeListShow[index].name,
+                                    maestro: templeListShow[index].maestro,
+                                    detail: templeListShow[index].detail,
+                                    img: templeListShow[index].img)));
                       },
                       child: ListTile(
-                        title: Text("${jsonData[index]['name']}"),
+                        title: Text("${templeListShow[index].name}"),
+                        trailing: Icon(Icons.arrow_right),
                       ),
                     ),
                   );
