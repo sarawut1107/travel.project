@@ -122,18 +122,25 @@ class _TravelPageState extends State<TravelPage> {
                       onTap: () {
                         // ! Use templeListShow to display temple data
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                // ignore: missing_required_param
-                                builder: (context) => TravelViewPage(
-                                    name: templeListShow[index].name,
-                                    maestro: templeListShow[index].maestro,
-                                    detail: templeListShow[index].detail,
-                                    img: templeListShow[index].img)));
+                          context,
+                          MaterialPageRoute(
+                            // ignore: missing_required_param
+                            builder: (context) => TravelViewPage(
+                              name: templeListShow[index].name,
+                              maestro: templeListShow[index].maestro,
+                              detail: templeListShow[index].detail,
+                              img: templeListShow[index].img,
+                              latitude: templeListShow[index].latitude,
+                              longitude: templeListShow[index].longitude,
+                            ),
+                          ),
+                        );
                       },
                       child: ListTile(
-                        title: Text("${templeListShow[index].name}",
-                            style: bulletStyle),
+                        title: Text(
+                          "${templeListShow[index].name}",
+                          style: bulletStyle,
+                        ),
                         trailing: Icon(Icons.arrow_right),
                       ),
                     ),

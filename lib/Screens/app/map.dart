@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_auth/Screens/app/travel_screen.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -73,23 +74,6 @@ class _MapPageState extends State<MapPage> {
           }
         },
       ),
-      // ! เอาปุ่มออก
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {
-      //     mapController.animateCamera(CameraUpdate.newLatLngZoom(
-      //         LatLng(userLocation.latitude, userLocation.longitude), 18));
-      //     showDialog(
-      //         context: context,
-      //         builder: (context) {
-      //           return AlertDialog(
-      //             content: Text(
-      //                 'Your Location has been send !\n lat: ${userLocation.latitude}  long: ${userLocation.longitude} '),
-      //           );
-      //         });
-      //   },
-      //   label: Text("send Location"),
-      //   icon: Icon(Icons.near_me),
-      // ),
     );
   }
 }
