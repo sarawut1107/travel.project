@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/app/travel_screen.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'map.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TravelViewPage extends StatefulWidget {
+  List<TempleData> templeListShow = [];
+  List<TempleData> templeList = [];
+
   final String name;
   final String maestro;
   final String detail;
