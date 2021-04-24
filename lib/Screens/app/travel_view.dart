@@ -45,8 +45,6 @@ class _TravelViewPageState extends State<TravelViewPage> {
     fontSize: 20,
   );
 
-  List<TempleData> templeListShow = [];
-
   @override
   Widget build(BuildContext context) {
     @override
@@ -117,12 +115,18 @@ class _TravelViewPageState extends State<TravelViewPage> {
             context,
             MaterialPageRoute(
               // ignore: missing_required_param
-              builder: (context) => MapPage(),
+              builder: (context) => MapPage(
+                name: '${widget.name}',
+                latitude: '${widget.latitude}',
+                longtide: '${widget.longitude}',
+              ),
             ),
           );
         },
         tooltip: 'Increment',
-        child: Icon(Icons.near_me),
+        child: Icon(
+          Icons.near_me,
+        ),
       ),
     );
   }
