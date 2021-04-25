@@ -10,7 +10,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
 class Body extends StatelessWidget {
-  
   TextStyle look = GoogleFonts.sourceCodePro(
     fontSize: 22,
     fontWeight: FontWeight.bold,
@@ -27,7 +26,10 @@ class Body extends StatelessWidget {
             Container(
               child: Text(
                 "WELCOME ",
-                style: look,
+                style: GoogleFonts.sourceCodePro(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
               ),
             ),
             Container(
