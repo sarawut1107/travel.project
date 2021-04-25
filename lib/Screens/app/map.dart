@@ -8,7 +8,7 @@ class MapPage extends StatefulWidget {
   List<TempleData> templeListShow = [];
   List<TempleData> templeList = [];
 
-  final name;
+  final String name;
   final latitude;
   final longtide;
 
@@ -28,7 +28,6 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController mapController;
 
   // ! ให้นำเอาพิกัด latitude & longitude มาใส่ตรงนี้
-
   LatLng position = LatLng(15.191689, 104.2772274);
 
   //Set google maps marker;
@@ -50,10 +49,6 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    void initState() {
-      super.initState();
-    }
-
     // ! Set Google Maps Marker
     final marker = new Marker(
       markerId: MarkerId('Hello'),
