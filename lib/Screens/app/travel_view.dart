@@ -117,8 +117,8 @@ class _TravelViewPageState extends State<TravelViewPage> {
               // ignore: missing_required_param
               builder: (context) => MapPage(
                 name: '${widget.name}',
-                latitude: '${widget.latitude}',
-                longtide: '${widget.longitude}',
+                latitude: widget.latitude,
+                longtide: widget.longitude,
               ),
             ),
           );

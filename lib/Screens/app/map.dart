@@ -28,7 +28,7 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController mapController;
 
   // ! ให้นำเอาพิกัด latitude & longitude มาใส่ตรงนี้
-  LatLng position = LatLng(15.191689, 104.2772274);
+  LatLng position;
 
   //Set google maps marker;
   Map<String, Marker> _markers = {};
@@ -49,6 +49,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    position = LatLng(widget.latitude, widget.longtide);
     // ! Set Google Maps Marker
     final marker = new Marker(
       markerId: MarkerId('Hello'),
