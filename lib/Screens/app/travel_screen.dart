@@ -153,6 +153,7 @@ class _TravelPageState extends State<TravelPage> {
                       child: Column(
                         children: [
                           Container(
+                            padding: EdgeInsets.all(10.0),
                             decoration: ShapeDecoration(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(
