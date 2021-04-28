@@ -37,3 +37,7 @@ Application Travel Templel Sisaket
 5.หน้าข้อมูล
 
 6.หน้าGoogle Map
+
+Application Travel Templel Sisaket ใช้การบันทึก - อ่านข้อมูลแบบ JSON เพื่อบันทึกข้อมูลต่างๆ ที่ทำเอาไว้
+
+## การอ่าน ไฟล์ด้วย Flutter
