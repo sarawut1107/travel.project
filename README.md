@@ -17,4 +17,11 @@
 คณะศิลปศาสตร์และวิทยาศาสตร์ มหาวิทยาลัยราชภัฏศรีสะเกษ
 
 **Description:**
-Application
+
+Application Travel Templel Sisaket
+เป็น Application ที่สร้างขึ้นเพื่อให้คนทั่วไปสามารถรู้ข้อมูลเบื้องต้นเกี่ยวกับวัดในจังหวัดศรีสะเกษ ภายใน Application นั้นประกอบ 6 หน้า ได้แก่ 1.หน้า WElCOME TO TRAVEL TEMPLEL SISAKET
+2.หน้า LOGIN
+3.หน้า SIGN UP
+4.หน้ารายชื่อวัด
+5.หน้าข้อมูล
+6.หน้าGoogle Map
