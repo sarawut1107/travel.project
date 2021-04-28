@@ -114,10 +114,24 @@ class _TravelPageState extends State<TravelPage> {
           future: _getTravelAPI(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return ListView.builder(
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 8 / 8,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
                 itemCount: templeListShow.length,
                 itemBuilder: (BuildContext context, index) {
-                  return Card(
+                  return Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            20,
+                          ),
+                        )),
                     child: InkWell(
                       onTap: () {
                         // ! Use templeListShow to display temple data
@@ -136,12 +150,39 @@ class _TravelPageState extends State<TravelPage> {
                           ),
                         );
                       },
-                      child: ListTile(
-                        title: Text(
-                          "${templeListShow[index].name}",
-                          style: bulletStyle,
-                        ),
-                        trailing: Icon(Icons.arrow_right),
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(200),
+                                ),
+                              ),
+                            ),
+                            child: Image.network(
+                              "${templeList[index].img}",
+                              height: 120,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Container(
+                                alignment: FractionalOffset.center,
+                                width: double.infinity,
+                                child: Text(
+                                  "${templeList[index].name}",
+                                  style: bulletStyle,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   );
