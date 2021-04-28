@@ -161,7 +161,7 @@ class _TravelPageState extends State<TravelPage> {
                               ),
                             ),
                             child: Image.network(
-                              "${templeList[index].img}",
+                              "${templeListShow[index].img}",
                               height: 120,
                               fit: BoxFit.cover,
                             ),
@@ -176,7 +176,7 @@ class _TravelPageState extends State<TravelPage> {
                                 alignment: FractionalOffset.center,
                                 width: double.infinity,
                                 child: Text(
-                                  "${templeList[index].name}",
+                                  "${templeListShow[index].name}",
                                   style: bulletStyle,
                                 ),
                               )

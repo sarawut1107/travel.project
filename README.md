@@ -24,7 +24,7 @@
 
 Application Travel Templel Sisaket
 เป็นApplicationที่สร้างขึ้นเพื่อให้คนทั่วไปสามารถรู้ข้อมูลเบื้องต้นเกี่ยวกับ
-วัดในจังหวัดศรีสะเกษ ภายใน Application นั้นประกอบ 6 หน้า ได้แก่
+วัดในจังหวัดศรีสะเกษ ภายใน Application ประกอบด้วย 6 หน้า ได้แก่
 
 1.หน้า WElCOME TO TRAVEL TEMPLEL SISAKET
 
