@@ -54,12 +54,11 @@
 
 ## การอ่านไฟล์Json
 
-class \_TravelPageState extends State<TravelPage> {
-var jsonData;
-List<TempleData> templeList = [];
-
-Future<String> \_getTravelAPI() async {
-var response = await Http.get('https://sarawut1107.github.io/templel/templel.json');
+    class TravelPageState extends State<TravelPage> {
+    var jsonData;
+    List<TempleData> templeList = [];
+    Future<String> getTravelAPI() async {
+    var response = await Http.get('https://sarawut1107.github.io/templel/templel.json');
 
     jsonData = json.decode(utf8.decode(response.bodyBytes));
     for (var item in jsonData) {
@@ -77,7 +76,6 @@ var response = await Http.get('https://sarawut1107.github.io/templel/templel.jso
     return 'jsonData';
 
     }
-
         child: FutureBuilder(
           future: _getTravelAPI(),
           builder: (context, snapshot) {
