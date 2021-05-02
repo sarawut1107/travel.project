@@ -38,6 +38,6 @@
 
 6.หน้าGoogle Map
 
-## ตัวอย่างหน้าจอ User Interface
+## ตัวอย่างหน้าจอ
 
 ![img](./img.jpg)
