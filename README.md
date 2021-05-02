@@ -76,7 +76,7 @@ var response = await Http.get('https://sarawut1107.github.io/templel/templel.jso
 
     return 'jsonData';
 
-}
+    }
 
         child: FutureBuilder(
           future: _getTravelAPI(),
@@ -137,9 +137,8 @@ var response = await Http.get('https://sarawut1107.github.io/templel/templel.jso
         ),
       ),
     );
-
-}
-}
+    }
+    }
 
 class TempleData {
 int order;
