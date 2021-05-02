@@ -78,26 +78,25 @@ var response = await Http.get('https://sarawut1107.github.io/templel/templel.jso
 
 }
 
-body: Background(
-child: FutureBuilder(
-future: \_getTravelAPI(),
-builder: (context, snapshot) {
-if (snapshot.hasData) {
-itemCount: templeListShow.length,
-child: InkWell(
-child: Column(
-children: [
-Container(
-padding: EdgeInsets.all(10.0),
-decoration: ShapeDecoration(
-shape: RoundedRectangleBorder(
-borderRadius: BorderRadius.vertical(
-top: Radius.circular(200),
-),
-),
-),
-child: Image.network(
-"${templeListShow[index].img}",
+        child: FutureBuilder(
+          future: _getTravelAPI(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+                itemCount: templeListShow.length,
+                    child: InkWell(
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10.0),
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(200),
+                                ),
+                              ),
+                            ),
+                            child: Image.network(
+                              "${templeListShow[index].img}",
                               height: 120,
                               fit: BoxFit.cover,
                             ),
@@ -113,31 +112,32 @@ child: Image.network(
                                 width: double.infinity,
                                 child: Text(
                                   "${templeListShow[index].name}",
-style: bulletStyle,
-),
-)
-],
-)
-],
-),
-),
-);
-},
-);
-} else {
-return Center(
-child: Column(
-mainAxisAlignment: MainAxisAlignment.center,
-children: <Widget>[
-CircularProgressIndicator(),
-],
-),
-);
-}
-},
-),
-),
-);
+                                  style: bulletStyle,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    CircularProgressIndicator(),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
+      ),
+    );
+
 }
 }
 
