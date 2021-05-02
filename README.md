@@ -158,6 +158,47 @@
     );
     }
 
+## การส่งข้อมูลระหว่างหน้า
+
+ข้อมูลหน้าแรก(index or travel_screen) ไปยังหน้าที่2 (travel_view)
+
+    onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            // ignore: missing_required_param
+                            builder: (context) => TravelViewPage(
+                              name: templeListShow[index].name,
+                              maestro: templeListShow[index].maestro,
+                              detail: templeListShow[index].detail,
+                              img: templeListShow[index].img,
+                              latitude: templeListShow[index].latitude,
+                              longitude: templeListShow[index].longitude,
+                            ),
+                          ),
+                        );
+                      },
+
+## การส่งข้อมูลระหว่างหน้า
+
+ข้อมูลหน้าที่2(travel_view) ไปยังหน้าที่3 (google_maps)
+
+การดึงข้อมูลระหว่างที่เป็นตัวเลขทศนิยม(doubel) จะไม่ใช้ latitude: '${widget.name}', แต่จะใช้คำสั่ง latitude: widget.latitude,
+
+    onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              // ignore: missing_required_param
+              builder: (context) => MapPage(
+                name: '${widget.name}',
+                latitude: widget.latitude,
+                longtide: widget.longitude,
+              ),
+            ),
+          );
+        },
+
 ## ตัวอย่างหน้าจอ
 
 ![img](./img.jpg)
