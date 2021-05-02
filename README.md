@@ -38,6 +38,20 @@
 
 6.หน้าGoogle Map
 
+**Packages we are using:**
+
+- fluuter: [link](https://pub.dev/packages/flutter_svg)
+
+- http: [link](https://pub.dev/packages/http)
+
+- geolocator: [link](https://pub.dev/packages/geolocator)
+
+- google_maps_flutter: [link](https://pub.dev/packages/google_maps_flutter)
+
+- flutter_search_Bar: [link](https://pub.dev/packages/flutter_search_bar)
+
+- google_fonts: [link](https://pub.dev/packages/google_fonts)
+
 ## การอ่านไฟล์Json
 
 ## ตัวอย่างหน้าจอ
