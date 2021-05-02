@@ -54,10 +54,10 @@
 
 ## การอ่านไฟล์Json
 
-    class _TravelPageState extends State<TravelPage> {
+    class TravelPageState extends State<TravelPage> {
     var jsonData;
     List<TempleData> templeList = [];
-    Future<String> _getTravelAPI() async {
+    Future<String> getTravelAPI() async {
     var response = await Http.get('https://sarawut1107.github.io/templel/templel.json');
 
     jsonData = json.decode(utf8.decode(response.bodyBytes));
@@ -201,100 +201,88 @@
 
 ## แสดงหน้า Google_Maps
 
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_auth/Screens/app/travel_screen.dart';
+    class MapPage extends StatefulWidget {
+        List<TempleData> templeListShow = [];
+        List<TempleData> templeList = [];
 
-class MapPage extends StatefulWidget {
-List<TempleData> templeListShow = [];
-List<TempleData> templeList = [];
+        final String name;
+        final latitude;
+        final longtide;
 
-final String name;
-final latitude;
-final longtide;
+        MapPage({
+        Key key,
+        this.name,
+        @required this.latitude,
+        @required this.longtide,
+        }) : super(key: key);
 
-MapPage({
-Key key,
-this.name,
-@required this.latitude,
-@required this.longtide,
-}) : super(key: key);
+        \_MapPageState createState() => \_MapPageState();
+    }
+    class _MapPageState extends State<MapPage> {
+        List<TempleData> templeList = [];
+        Position userLocation;
+        GoogleMapController mapController;
+        LatLng position;
+        Map<String, Marker> _markers = {};
 
-\_MapPageState createState() => \_MapPageState();
-}
+        void _onMapCreated(GoogleMapController controller) {
+        mapController = controller;
+        }
 
-class \_MapPageState extends State<MapPage> {
-List<TempleData> templeList = [];
-Position userLocation;
-GoogleMapController mapController;
+        Future<Position> _getlocation() async {
+          try {
+            userLocation = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
+          } catch (e) {
+             userLocation = null;
+         }
+         return userLocation;
+        }
+    @override
+    Widget build(BuildContext context) {
+        position = LatLng(widget.latitude, widget.longtide);
 
-LatLng position;
-
-//Set google maps marker;
-Map<String, Marker> \_markers = {};
-
-void \_onMapCreated(GoogleMapController controller) {
-mapController = controller;
-}
-
-Future<Position> \_getlocation() async {
-try {
-userLocation = await Geolocator.getCurrentPosition(
-desiredAccuracy: LocationAccuracy.best);
-} catch (e) {
-userLocation = null;
-}
-return userLocation;
-}
-
-@override
-Widget build(BuildContext context) {
-position = LatLng(widget.latitude, widget.longtide);
-// ! Set Google Maps Marker
-final marker = new Marker(
-markerId: MarkerId('Hello'),
-position: position,
-infoWindow: InfoWindow(
-title: '${widget.name}',
-// snippet: history.date,
-),
-);
-\_markers["0"] = marker;
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'แผนที่',
-          style: GoogleFonts.baiJamjuree(),
+        final marker = new Marker(
+        markerId: MarkerId('Hello'),
+        position: position,
+        infoWindow: InfoWindow(
+        title: '${widget.name}',
+        // snippet: history.date,
         ),
-      ),
-      body: FutureBuilder(
-        future: _getlocation(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return GoogleMap(
-              mapType: MapType.normal,
-              onMapCreated: _onMapCreated,
-              myLocationEnabled: true,
-              initialCameraPosition: CameraPosition(target: position, zoom: 15),
-              markers: _markers.values.toSet(),
-            );
-          } else {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[CircularProgressIndicator()],
-              ),
-            );
-          }
-        },
-      ),
-    );
+     );
+     _markers["0"] = marker;
 
-}
-}
+        return Scaffold(
+         appBar: AppBar(
+            title: Text(
+            'แผนที่',
+            style: GoogleFonts.baiJamjuree(),
+            ),
+        ),
+       body: FutureBuilder(
+            future: _getlocation(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                return GoogleMap(
+                    mapType: MapType.normal,
+                    onMapCreated: _onMapCreated,
+                    myLocationEnabled: true,
+                    initialCameraPosition: CameraPosition(target: position, zoom: 15),
+                    markers: _markers.values.toSet(),
+                );
+            } else {
+                return Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[CircularProgressIndicator()],
+                    ),
+                   );
+                  }
+                 },
+                ),
+               );
+              }
+            }
 
 ## ตัวอย่างหน้าจอ
 
