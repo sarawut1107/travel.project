@@ -167,21 +167,21 @@
 
 ```dart
     onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            // ignore: missing_required_param
-                            builder: (context) => TravelViewPage(
-                              name: templeListShow[index].name,
-                              maestro: templeListShow[index].maestro,
-                              detail: templeListShow[index].detail,
-                              img: templeListShow[index].img,
-                              latitude: templeListShow[index].latitude,
-                              longitude: templeListShow[index].longitude,
-                            ),
-                          ),
-                        );
-                      },
+                 Navigator.push(
+                  context,
+                   MaterialPageRoute(
+                   // ignore: missing_required_param
+                   builder: (context) => TravelViewPage(
+                   name: templeListShow[index].name,
+                   maestro: templeListShow[index].maestro,
+                   detail: templeListShow[index].detail,
+                   img: templeListShow[index].img,
+                   latitude: templeListShow[index].latitude,
+                   longitude: templeListShow[index].longitude,
+                  ),
+                 ),
+                );
+               },
 ```
 
 ## การส่งข้อมูลระหว่างหน้า
@@ -225,7 +225,7 @@
         @required this.longtide,
         }) : super(key: key);
 
-        \_MapPageState createState() => \_MapPageState();
+        _MapPageState createState() => _MapPageState();
     }
     class _MapPageState extends State<MapPage> {
         List<TempleData> templeList = [];
