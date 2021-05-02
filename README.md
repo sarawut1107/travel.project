@@ -183,7 +183,7 @@
 
 ข้อมูลหน้าที่2(travel_view) ไปยังหน้าที่3 (google_maps)
 
-การดึงข้อมูลระหว่างที่เป็นตัวเลขทศนิยม(doubel) จะไม่ใช้ latitude: '${widget.name}', แต่จะใช้คำสั่ง latitude: widget.latitude,
+การดึงข้อมูลระหว่างที่เป็นตัวเลขทศนิยม(doubel) จะไม่ใช้ latitude: '${widget.latitude}', แต่จะใช้คำสั่ง latitude: widget.latitude,
 
     onPressed: () {
           Navigator.push(
