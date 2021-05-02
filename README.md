@@ -165,6 +165,7 @@
 
 ข้อมูลหน้าแรก(index or travel_screen) ไปยังหน้าที่2 (travel_view)
 
+```dart
     onTap: () {
                         Navigator.push(
                           context,
@@ -181,6 +182,7 @@
                           ),
                         );
                       },
+```
 
 ## การส่งข้อมูลระหว่างหน้า
 
@@ -188,6 +190,7 @@
 
 การดึงข้อมูลระหว่างที่เป็นตัวเลขทศนิยม(doubel) จะไม่ใช้ latitude: '${widget.latitude}', แต่จะใช้คำสั่ง latitude: widget.latitude,
 
+```dart
     onPressed: () {
           Navigator.push(
             context,
@@ -201,8 +204,11 @@
             ),
           );
         },
+```
 
 ## แสดงหน้า Google_Maps
+
+```dart
 
     class MapPage extends StatefulWidget {
         List<TempleData> templeListShow = [];
@@ -286,6 +292,7 @@
                );
               }
             }
+```
 
 ## ตัวอย่างหน้าจอ
 
