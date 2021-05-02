@@ -54,6 +54,113 @@
 
 ## การอ่านไฟล์Json
 
+class \_TravelPageState extends State<TravelPage> {
+var jsonData;
+List<TempleData> templeList = [];
+
+Future<String> \_getTravelAPI() async {
+var response = await Http.get('https://sarawut1107.github.io/templel/templel.json');
+
+    jsonData = json.decode(utf8.decode(response.bodyBytes));
+    for (var item in jsonData) {
+      TempleData templeData = TempleData(
+          item['order'],
+          item['name'],
+          item['maestro'],
+          item['detail'],
+          item['latitude'],
+          item['longitude'],
+          item['img']);
+      templeList.add(templeData);
+    }
+
+    return 'jsonData';
+
+}
+
+body: Background(
+child: FutureBuilder(
+future: \_getTravelAPI(),
+builder: (context, snapshot) {
+if (snapshot.hasData) {
+itemCount: templeListShow.length,
+child: InkWell(
+child: Column(
+children: [
+Container(
+padding: EdgeInsets.all(10.0),
+decoration: ShapeDecoration(
+shape: RoundedRectangleBorder(
+borderRadius: BorderRadius.vertical(
+top: Radius.circular(200),
+),
+),
+),
+child: Image.network(
+"${templeListShow[index].img}",
+                              height: 120,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Container(
+                                alignment: FractionalOffset.center,
+                                width: double.infinity,
+                                child: Text(
+                                  "${templeListShow[index].name}",
+style: bulletStyle,
+),
+)
+],
+)
+],
+),
+),
+);
+},
+);
+} else {
+return Center(
+child: Column(
+mainAxisAlignment: MainAxisAlignment.center,
+children: <Widget>[
+CircularProgressIndicator(),
+],
+),
+);
+}
+},
+),
+),
+);
+}
+}
+
+class TempleData {
+int order;
+String name;
+String maestro;
+String detail;
+double latitude;
+double longitude;
+String img;
+
+TempleData(
+this.order,
+this.name,
+this.maestro,
+this.detail,
+this.latitude,
+this.longitude,
+this.img,
+);
+}
+
 ## ตัวอย่างหน้าจอ
 
 ![img](./img.jpg)
