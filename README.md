@@ -42,235 +42,137 @@ Application Travel Templel Sisaket ใช้การบันทึก - อ่
 
 ## การอ่านไฟล์Json การสร้าง Search Bar และการสร้างGridView
 
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/app/travel_view.dart';
-import 'package:http/http.dart' as Http;
-import '../Login/components/background.dart';
-import 'package:flutter_search_bar/flutter_search_bar.dart';
+import 'package:flutter_auth/Screens/app/travel_screen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'map.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TravelPage extends StatefulWidget {
-@override
-// ignore: override_on_non_overriding_member
-Widget build(BuildContext context) {
-return new MaterialApp(
-title: 'Search Bar Demo',
-theme: new ThemeData(primarySwatch: Colors.blue),
-);
-}
-
-@override
-\_TravelPageState createState() => \_TravelPageState();
-}
-
-class \_TravelPageState extends State<TravelPage> {
-var jsonData;
-SearchBar searchBar;
-String searchKey = "";
-
-// ! List for store temple data from JSON
+class TravelViewPage extends StatefulWidget {
+List<TempleData> templeListShow = [];
 List<TempleData> templeList = [];
 
-// ! Create new list for show
-List<TempleData> templeListShow = [];
+final String name;
+final String maestro;
+final String detail;
+final String img;
+final double latitude;
+final double longitude;
 
-// ignore: unused_field
-final GlobalKey<ScaffoldState> \_scaffoldKey = new GlobalKey<ScaffoldState>();
+TravelViewPage({
+Key key,
+@required this.name,
+this.maestro,
+this.detail,
+@required this.img,
+this.latitude,
+this.longitude,
+}) : super(key: key);
+@override
+\_TravelViewPageState createState() => \_TravelViewPageState();
+}
 
-AppBar buildAppBar(BuildContext context) {
-return new AppBar(
-title: new Text(
-'รายชื่อวัดในจังหวัดศรีสะเกษ',
-style: GoogleFonts.baiJamjuree(),
-),
-actions: [searchBar.getSearchAction(context)],
+class \_TravelViewPageState extends State<TravelViewPage> {
+List<TempleData> templeList = [];
+TextStyle bulletStyle = GoogleFonts.baiJamjuree(
+fontSize: 24,
+fontWeight: FontWeight.bold,
 );
-}
 
-void onSubmitted(String value) {
-setState(() {
-searchKey = value;
-\_scaffoldKey.currentState.showSnackBar(
-new SnackBar(content: new Text('You search for $value!')));
-});
-}
+TextStyle contentStyle = GoogleFonts.baiJamjuree(
+fontSize: 22,
+);
 
-\_TravelPageState() {
-searchBar = new SearchBar(
-inBar: false,
-buildDefaultAppBar: buildAppBar,
-setState: setState,
-onSubmitted: onSubmitted,
-onCleared: () {
-print("cleared");
-},
-onClosed: () {
-print("Closed");
-});
-}
-
-// ignore: non_constant_identifier_names
-Future<String> \_getTravelAPI() async {
-var response =
-await Http.get('https://sarawut1107.github.io/templel/templel.json');
-
-    jsonData = json.decode(utf8.decode(response.bodyBytes));
-    // ! if refresh screen
-    templeList.clear();
-    for (var item in jsonData) {
-      TempleData templeData = TempleData(
-          item['order'],
-          item['name'],
-          item['maestro'],
-          item['detail'],
-          item['latitude'],
-          item['longitude'],
-          item['img']);
-      templeList.add(templeData);
-    }
-
-    // ! for filter temple when have keyword.
-    if (searchKey == "") {
-      templeListShow = templeList;
-    } else {
-      print(searchKey);
-      templeListShow = templeList
-          .where((element) => element.name.startsWith(searchKey))
-          .toList();
-    }
-
-    return 'jsonData';
-
-}
+TextStyle kobfont = GoogleFonts.baiJamjuree(
+fontSize: 20,
+);
 
 @override
 Widget build(BuildContext context) {
-// ignore: unused_local_variable
-TextStyle bulletStyle = GoogleFonts.baiJamjuree(
-fontSize: 20,
-);
-return new Scaffold(
-appBar: searchBar.build(context),
-key: \_scaffoldKey,
-body: Background(
-child: FutureBuilder(
-future: \_getTravelAPI(),
-builder: (context, snapshot) {
-if (snapshot.hasData) {
-return GridView.builder(
-gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-crossAxisCount: 2,
-childAspectRatio: 8 / 8,
-crossAxisSpacing: 8,
-mainAxisSpacing: 8,
-),
-itemCount: templeListShow.length,
-itemBuilder: (BuildContext context, index) {
-return Container(
-height: 200,
-decoration: BoxDecoration(
-color: Colors.white,
-borderRadius: BorderRadius.all(
-Radius.circular(
-20,
-),
-)),
-child: InkWell(
-onTap: () {
-// ! Use templeListShow to display temple data
-Navigator.push(
-context,
-MaterialPageRoute(
-// ignore: missing_required_param
-builder: (context) => TravelViewPage(
-name: templeListShow[index].name,
-maestro: templeListShow[index].maestro,
-detail: templeListShow[index].detail,
-img: templeListShow[index].img,
-latitude: templeListShow[index].latitude,
-longitude: templeListShow[index].longitude,
-),
-),
-);
-},
-child: Column(
-children: [
-Container(
-padding: EdgeInsets.all(10.0),
-decoration: ShapeDecoration(
-shape: RoundedRectangleBorder(
-borderRadius: BorderRadius.vertical(
-top: Radius.circular(200),
-),
-),
-),
-child: Image.network(
-"${templeListShow[index].img}",
-                              height: 120,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          ListView(
-                            shrinkWrap: true,
-                            children: [
-                              Container(
-                                alignment: FractionalOffset.center,
-                                width: double.infinity,
-                                child: Text(
-                                  "${templeListShow[index].name}",
-style: bulletStyle,
-),
-)
-],
-)
-],
-),
-),
-);
-},
-);
-} else {
-return Center(
-child: Column(
-mainAxisAlignment: MainAxisAlignment.center,
-children: <Widget>[
-CircularProgressIndicator(),
-],
-),
-);
-}
-},
-),
-),
-);
-}
+@override
+// ignore: unused_element
+void initState() {
+super.initState();
+if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
 }
 
-class TempleData {
-int order;
-String name;
-String maestro;
-String detail;
-double latitude;
-double longitude;
-String img;
+    print(widget.img);
 
-TempleData(
-this.order,
-this.name,
-this.maestro,
-this.detail,
-this.latitude,
-this.longitude,
-this.img,
-);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'รายละเอียดวัด',
+          style: GoogleFonts.baiJamjuree(),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: EdgeInsets.all(15),
+                child: Align(
+                  child: Text(
+                    "${widget.name}",
+                    style: bulletStyle,
+                  ),
+                ),
+              ),
+              Card(
+                child: Image.network('${widget.img}'),
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                margin: EdgeInsets.all(15),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                child: Align(
+                  child: Text(
+                    "${widget.maestro}",
+                    style: contentStyle,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15),
+                child: Align(
+                  child: Text("${widget.detail}", style: kobfont),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              // ignore: missing_required_param
+              builder: (context) => MapPage(
+                name: '${widget.name}',
+                latitude: widget.latitude,
+                longtide: widget.longitude,
+              ),
+            ),
+          );
+        },
+        tooltip: 'Increment',
+        child: Icon(
+          Icons.near_me,
+        ),
+      ),
+    );
 
-startsWith(String searchKey) {}
 }
-
-## การอ่าน ไฟล์Json
+}
