@@ -138,25 +138,25 @@
     }
     }
 
-class TempleData {
-int order;
-String name;
-String maestro;
-String detail;
-double latitude;
-double longitude;
-String img;
+    class TempleData {
+    int order;
+    String name;
+    String maestro;
+    String detail;
+    double latitude;
+    double longitude;
+    String img;
 
-TempleData(
-this.order,
-this.name,
-this.maestro,
-this.detail,
-this.latitude,
-this.longitude,
-this.img,
-);
-}
+    TempleData(
+    this.order,
+    this.name,
+    this.maestro,
+    this.detail,
+    this.latitude,
+    this.longitude,
+    this.img,
+    );
+    }
 
 ## ตัวอย่างหน้าจอ
 
